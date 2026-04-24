@@ -22,7 +22,7 @@ Le projet met l'accent sur :
 - [Exemple d'utilisation](#-exemple-dutilisation)
 - [Gestion des erreurs](#-gestion-des-erreurs)
 - [Améliorations possibles](#-améliorations-possibles)
-- [Auteur]()
+- [Auteur](#-Martin Junior Essomba)
 - [Licence](#-licence)
 
 ---
