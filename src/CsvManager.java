@@ -13,9 +13,9 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
+// Classe responsable de la lecture et de l'écriture des fichiers CSV
 public class CsvManager extends AbstractCsvHandler implements DataManager {
-
+//on appelle le constructeur de la classe AbstractCsvHandler
     public CsvManager() {
         super();
     }
@@ -31,7 +31,7 @@ public class CsvManager extends AbstractCsvHandler implements DataManager {
         this.separateur = sep;
 
         List<Etudiant> etudiants = new ArrayList<>();
-
+                 // lecture du csv
         try (Reader reader = new FileReader(nomFichier);
              CSVReader csvReader = new CSVReaderBuilder(reader)
                      .withCSVParser(new CSVParserBuilder()
@@ -57,7 +57,7 @@ public class CsvManager extends AbstractCsvHandler implements DataManager {
                     throw new DataAccessException(
                             "Ligne invalide dans le fichier CSV : " + String.join(String.valueOf(sep), colonnes));
                 }
-
+                // Conversion de la première colonne en entier pour l'identifiant
                 int id;
                 try {
                     id = Integer.parseInt(colonnes[0].trim());
@@ -108,7 +108,7 @@ public class CsvManager extends AbstractCsvHandler implements DataManager {
                      CSVWriter.DEFAULT_LINE_END)) {
 
             csvWriter.writeNext(new String[] { "Rang", "ID", "Nom", "Prenom", "Moyenne" });
-
+            // On parcours de tous les étudiants pour écrire une ligne par étudiant
             for (int i = 0; i < etudiants.size(); i++) {
                 Etudiant e = etudiants.get(i);
                 csvWriter.writeNext(new String[] {
@@ -116,7 +116,7 @@ public class CsvManager extends AbstractCsvHandler implements DataManager {
                         String.valueOf(e.getId()),
                         e.getNom(),
                         e.getPrenom(),
-                        // Locale.ROOT -> force le point décimal, indépendamment de la locale système
+                        // Locale.ROOT -> force le point décimal, indépendamment du systeme local
                         String.format(Locale.ROOT, "%.2f", e.getMoyenne())
                 });
             }
